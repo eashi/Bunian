@@ -13,7 +13,8 @@ namespace UpgradeDatabase
     {
         static void Main(string[] args)
         {
-            var connectionString = ConfigurationManager.ConnectionStrings[args[0]].ToString();
+            //var connectionString = ConfigurationManager.ConnectionStrings[args[0]].ToString();
+            var connectionString = args[0];
 
             var upgrader = DeployChanges
                 .To
