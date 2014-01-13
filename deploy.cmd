@@ -73,7 +73,7 @@ echo Upgrading the database
 %MSBUILD_PATH% UpgradeDatabase\UpgradeDatabase.csproj
 IF !ERRORLEVEL! NEQ 0 goto error
 
-call "%DEPLOYMENT_SOURCE%\UpgradeDatabase\bin\debug\UpgradeDatabase.exe "%DatabaseToUpgrade%"
+call %DEPLOYMENT_SOURCE%\UpgradeDatabase\bin\debug\UpgradeDatabase.exe %DatabaseToUpgrade%
 IF !ERRORLEVEL! NEQ 0 goto error
 
 :: 1. Restore NuGet packages
