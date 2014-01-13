@@ -67,6 +67,15 @@ IF NOT DEFINED MSBUILD_PATH (
 
 echo Handling .NET Web Application deployment.
 
+:: 0. Upgrade the database
+
+echo Upgrading the database
+%MSBUILD_PATH% UpgradeDatabase\UpgradeDatabase.csproj
+IF !ERRORLEVEL! NEQ 0 goto error
+
+call "%DEPLOYMENT_SOURCE%\UpgradeDatabase\bin\debug\UpgradeDatabase.exe %DatabaseToUpgrade%
+IF !ERRORLEVEL! NEQ 0 goto error
+
 :: 1. Restore NuGet packages
 IF /I "bunian.sln" NEQ "" (
   call "%NUGET_EXE%" restore "%DEPLOYMENT_SOURCE%\bunian.sln"
